@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+    background: rgb(226, 226, 226);
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+header{
+    background: #55d6aa;
+}
