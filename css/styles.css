@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    background: rgb(226, 226, 226);
+    background: rgb(51, 51, 51);
 }
 
 .container{
@@ -9,7 +9,8 @@ body{
 }
 
 header{
-    background: #55d6aa;
+  font-family: 'JetBrains Mono', monospace;
+  background: #d1d1d1;
 }
 
 header::after{
@@ -44,4 +45,13 @@ nav a{
 
 nav a:hover{
   color: #000;
+}
+
+img{
+  float: left;
+}
+
+p{
+  color: white;
+  font-family: 'Roboto Mono', monospace;
 }
