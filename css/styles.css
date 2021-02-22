@@ -46,4 +46,8 @@ nav a:hover{
 p{
   color: white;
   font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  overflow-wrap: break-word;
 }
+
+
