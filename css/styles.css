@@ -4,7 +4,7 @@ body{
     font-family: 'Roboto Mono', monospace;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+body, p, h1, h2, h3, h4, h5, h6 {
   color: white;
   font-family: 'Roboto Mono', monospace;
   overflow-wrap: break-word;
@@ -51,10 +51,6 @@ nav a:hover{
 
 a {
   text-decoration: none;
-}
-
-a:hover {
-  
 }
 
 
