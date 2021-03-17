@@ -12,8 +12,13 @@ body, p, h1, h2, h3, h4, h5, h6 {
 
 header{
   font-family: 'JetBrains Mono', monospace;
-  background: #d1d1d1;
   text-align:center;
+  background-color:#d1d1d1;
+  overflow: hidden;
+  position:fixed;
+  top:0;
+  width: 100%;
+  z-index: 3;
 }
 
 header::after{
@@ -51,6 +56,10 @@ nav a:hover{
 
 a {
   text-decoration: none;
+}
+
+main {
+  margin-top: 50px;
 }
 
 
