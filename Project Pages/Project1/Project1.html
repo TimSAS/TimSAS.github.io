@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="../css/styles.css" rel="stylesheet" type="text/css">
+    <link href="../../css/styles.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
@@ -22,35 +22,35 @@
           
           <div class="w3-row-padding">
             <div class="w3-container w3-quarter">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/1.jpg" style="width:100%;cursor:pointer" 
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/1.jpg" style="width:100%;cursor:pointer" 
               onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/5.jpg" style="width:100%;cursor:pointer" 
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/5.jpg" style="width:100%;cursor:pointer" 
               onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/9.jpg" style="width:100%;cursor:pointer" 
-              onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-            </div>
-            <div class="w3-container w3-quarter">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/2.jpg" style="width:100%;cursor:pointer" 
-              onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/6.jpg" style="width:100%;cursor:pointer" 
-              onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/10.jpg" style="width:100%;cursor:pointer" 
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/9.jpg" style="width:100%;cursor:pointer" 
               onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
             </div>
             <div class="w3-container w3-quarter">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/3.jpg" style="width:100%;cursor:pointer" 
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/2.jpg" style="width:100%;cursor:pointer" 
               onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/7.jpg" style="width:100%;cursor:pointer" 
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/6.jpg" style="width:100%;cursor:pointer" 
               onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-              <img src="../assets/projects/1. Thesis/Compressed Catalog/11.jpg" style="width:100%;cursor:pointer" 
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/10.jpg" style="width:100%;cursor:pointer" 
               onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
             </div>
             <div class="w3-container w3-quarter">
-                <img src="../assets/projects/1. Thesis/Compressed Catalog/4.jpg" style="width:100%;cursor:pointer" 
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/3.jpg" style="width:100%;cursor:pointer" 
+              onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/7.jpg" style="width:100%;cursor:pointer" 
+              onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
+              <img src="../../assets/projects/1. Thesis/Compressed Catalog/11.jpg" style="width:100%;cursor:pointer" 
+              onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
+            </div>
+            <div class="w3-container w3-quarter">
+                <img src="../../assets/projects/1. Thesis/Compressed Catalog/4.jpg" style="width:100%;cursor:pointer" 
                 onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-                <img src="../assets/projects/1. Thesis/Compressed Catalog/8.jpg" style="width:100%;cursor:pointer" 
+                <img src="../../assets/projects/1. Thesis/Compressed Catalog/8.jpg" style="width:100%;cursor:pointer" 
                 onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
-                <img src="../assets/projects/1. Thesis/Compressed Catalog/12.jpg" style="width:100%;cursor:pointer" 
+                <img src="../../assets/projects/1. Thesis/Compressed Catalog/12.jpg" style="width:100%;cursor:pointer" 
               onclick="onClick(this)" class="w3-hover-opacity w3-margin-top">
               </div>
           </div>
@@ -67,6 +67,12 @@
           function onClick(element) {
             document.getElementById("img01").src = element.src;
             document.getElementById("modal01").style.display = "block";
+            var elem = element.src;
+            var compName = elem.slice(elem.indexOf('/',elem.length-8));
+            var compPath = 'Compressed Compositions MP3_128' + compName.replace('.jpg', '.mp3');
+            //window.alert(compPath);
+            var comp = new Audio(compPath);
+            comp.play();
           }
           </script>
     </main>
