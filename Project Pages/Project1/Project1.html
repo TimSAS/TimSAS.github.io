@@ -56,7 +56,7 @@
           </div>
 
           
-          <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+          <div id="modal01" class="w3-modal" onclick="this.style.display='none'; comp.pause(); comp.currentTime=0;">
             <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
             <div class="w3-modal-content w3-animate-zoom">
               <img id="img01" style="width:100%;">
@@ -64,16 +64,17 @@
           </div>
           
           <script>
-          function onClick(element) {
-            document.getElementById("img01").src = element.src;
-            document.getElementById("modal01").style.display = "block";
-            var elem = element.src;
-            var compName = elem.slice(elem.indexOf('/',elem.length-8));
-            var compPath = 'Compressed Compositions MP3_128' + compName.replace('.jpg', '.mp3');
-            //window.alert(compPath);
-            var comp = new Audio(compPath);
-            comp.play();
-          }
+            var comp;
+            function onClick(element) {
+              document.getElementById("img01").src = element.src;
+              document.getElementById("modal01").style.display = "block";
+              var elem = element.src;
+              var compName = elem.slice(elem.indexOf('/',elem.length-8));
+              var compPath = 'Compressed Compositions MP3_128' + compName.replace('.jpg', '.mp3');
+              //window.alert(compPath);
+              comp = new Audio(compPath);
+              comp.play();
+            }
           </script>
     </main>
 </body>
