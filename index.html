@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="generateText()">
+<body onload="generateTextContinuously()">
     <header>
         <nav>
             <ul>
@@ -29,7 +29,10 @@
             function getRandomInt(max){
                 return Math.floor(Math.random() * max);
             }
-
+            function generateTextContinuously(){
+                generateText();
+                setInterval(generateText, 1000);
+            }
             function generateText(){
                 let ourText = document.getElementById('generatedText');
                 //John 3:16
@@ -74,7 +77,7 @@
                     randomDistance--;
                 }
                 //alert(outString);
-                ourText.innerHTML += outString;
+                ourText.innerHTML = outString;
             }
         </script>
     </main>
