@@ -46,7 +46,7 @@
             }
             function generateTextContinuously(){
                 generateText();
-                setInterval(generateText, 88);
+                setInterval(generateText, 250);
             }
             function generateText(){
                 let ourText = document.getElementById('generatedText');
@@ -97,8 +97,8 @@
  
                 //move all words in the correct direction
                 for (var i = 0; i < items.length; i++){
-                    if(directions[i] == 1) absolutePositions[i] += 1;
-                    else if(directions[i] == 0) absolutePositions[i] -= 1;
+                    if(directions[i] == 1) absolutePositions[i] += 2;
+                    else if(directions[i] == 0) absolutePositions[i] -= 2;
 
                     //gotta fix this:
                     if(absolutePositions[i] >= endingPositions[i]) {absolutePositions[i] = endingPositions[i]; directions[i] = 0;}
