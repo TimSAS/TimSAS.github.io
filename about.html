@@ -76,14 +76,6 @@
                         //if not all items have been displayed yet
                         if (itemsShowed != items.length){
                         outString += '<span style="color:white;">' + items[itemsShowed] + '</span>';
-                        
-                        //move current word to the right, for next run
-                        randomDistances[itemsShowed]++;
-                        if(randomDistances[itemsShowed] >= maxDist){
-                            randomDistances[itemsShowed] = getRandomInt(maxDist);
-                            while (randomDistances[itemsShowed] < maxDist/2){ randomDistances[itemsShowed] = getRandomInt(maxDist);}
-                        }
-                        
                         itemsShowed++;
                         if(itemsShowed < items.length){currentDistance = randomDistances[itemsShowed];}
                         continue;
@@ -93,6 +85,12 @@
                     verseIndex++;
                     currentDistance--;
                 }
+                //move all words to the right, for next run
+                randomDistances[0]++;
+                        if(randomDistances[0] >= maxDist){
+                            randomDistances[0] = getRandomInt(maxDist);
+                            while (randomDistances[0] < maxDist/2){ randomDistances[0] = getRandomInt(maxDist);}
+                        }
                 //alert(outString);
                 ourText.innerHTML = outString;
             
