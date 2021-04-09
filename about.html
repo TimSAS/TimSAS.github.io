@@ -21,15 +21,18 @@
     <main>
         <div class="w3-row">
             <div class="w3-twothird w3-mobile"><img src="assets/about_pic.jpg" width="100%"></div>
-            <!--<div class="w3-rest w3-mobile"><p style="color: #444;">01000110011011110111001000100000010001110110111101100100001000000111001101101<span style="color:white;">Timothy</span>111001<span style="color:white;">Abramov</span>000000110110001101111011101100110010101100100001000000111010001101000011001010010000001110111011011110111001001101100011001000010110000100000011101000110100001100001011101000010000001101000011001010010000001100<span style="color:white;">Photos</span>1110110000101110110011001010010000001101000011010010111001100100000011011110110111001101100011110010010000001100010011001010110011101101111011101000111010001100101011011100010000001010011011011110110111000101100001000000111010001101000011000010111010000100000011101110110100001101111011100110<span style="color:white;">Music</span>110111101100101011101100110010101110010001000000110001001100101011011000110100101100101011101100110010101110100011010000010000001101001011011100010000001101000011010010<span style="color:white;">Programming</span>1101101001000000111001101101000011011110111010101101100011001000010000001101110011011110111010000100000011100000110010101110010011010010111001101101000001011000010000001100010011101010111010000100000011010000110000101110110011001010010000001100101011101100110010101110010001000000110110001100001011100110111010001101001011011100110011100100000011011000110100101100110011001010010111000100000010010100110111101101000011011100010000000110011001110100011000100110110001000000100110001101111011<span style="color:white;">Christian</span>10110011001010010000001101001011100110010000001110000011000010111010001101001011001010110111001110100001011000010000001101100011011110111011001100101001000000110100101110011001000000110101101101001011011100110010000101110001000000100100101110100001000000110010001101111011001010111001100100000011011100110111101110100001000000110010101101110011101100111100100101100001000000110100101110100001000000110010001101111011001010111001100100000011011100<span style="color:white;">Adventurer</span>1101111011101000010000001100010011011110110000101110011011101000010110000100000011010010111010000100000011010010111001100100000011011100110111101110100001000000111000001110010011011110111010101100100001011100010000001001001011101000010000001100100011011110110010101110011001000000110111001101111011101000010000001100100011010010111001101101000011011110110111001101111011100100010000001101111011101000110100<span style="color:white;">Daydreamer</span>001100101011100100111001100101100001000000110100101110100001000000110100101110011001000000110111001101111011101000010000001110011011001010110110001100110001011010111001101100101011001010110101101101001011011100110011100101100001000000110100101110100001000000110100101110011001000000110111001101111011101000010000001100101011000010111001101101001011011000111100100100000011000010110111001100111011001010111001001100101011001000010110000100000011010010111010000100000011010110110010101100101011100000<span style="color:white;">testemail@gmail.com</span>1110011001000000110111001101111001000000111001001100101011000110110111101110010011001000010000001101111011001100010000001110111011100100110111101101110011001110111001100101110001000000011000100100000010000110110111101110010011010010110111001110100011010000110100101100001011011100111001100100000001100010011001100111010001101000010110100110101</p></div>-->
             <div class="w3-rest w3-mobile"><p style="color: #444;" id="generatedText"></p></div>
         </div>
 
         <script>
             var textGenerated = 0; //see if text was generated at least once
-            var randomDistances = []; 
-            var selectedVerse;
-            var maxDist;
+            var absolutePositions = []; //holds the position of each item in text
+            var startingPositions = [];
+            var endingPositions = [];
+            var directions = []; //directions in which items move, may be different for different items
+            var selectedVerse; 
+            var maxDist;  //maximum distance between the items
+            
             //John 3:16
             var verse1 = '0100011001101111011100100010000001000111011011110110010000100000011100110110111100100000011011000110111101110110011001010110010000100000011101000110100001100101001000000111011101101111011100100110110001100100001011000010000001110100011010000110000101110100001000000110100001100101001000000110011101100001011101100110010100100000011010000110100101110011001000000110111101101110011011000111100100100000011000100110010101100111011011110111010001110100011001010110111000100000010100110110111101101110001011000010000001110100011010000110000101110100001000000111011101101000011011110111001101101111011001010111011001100101011100100010000001100010011001010110110001101001011001010111011001100101011101000110100000100000011010010110111000100000011010000110100101101101001000000111001101101000011011110111010101101100011001000010000001101110011011110111010000100000011100000110010101110010011010010111001101101000001011000010000001100010011101010111010000100000011010000110000101110110011001010010000001100101011101100110010101110010011011000110000101110011011101000110100101101110011001110010000001101100011010010110011001100101001011100000101000001010';
             //1 John 4:16
@@ -43,7 +46,7 @@
             }
             function generateTextContinuously(){
                 generateText();
-                setInterval(generateText, 500);
+                setInterval(generateText, 88);
             }
             function generateText(){
                 let ourText = document.getElementById('generatedText');
@@ -56,41 +59,56 @@
                     selectedVerse = verses[randomVerseNum];
                     //max distance between items
                     maxDist = Math.floor(selectedVerse.length / items.length);
-                    //distances for each item
+                    let randomDistance;
+                    let absolutePosition = 0;
+                    //distances and locations for each item
                     for(var i=0; i<items.length;i++)
                     { 
-                        randomDistances[i] = getRandomInt(maxDist);
-                        while (randomDistances[i] < maxDist/2){ randomDistances[i] = getRandomInt(maxDist);}    
+                        randomDistance = getRandomInt(maxDist);
+                        while (randomDistance < maxDist/2){ randomDistance = getRandomInt(maxDist);} 
+                        endingPositions[i] = absolutePosition + maxDist;
+                        absolutePosition += randomDistance;
+                        absolutePositions[i] = absolutePosition;
+                        startingPositions[i] = absolutePositions[i]; 
+                        absolutePosition += items[i].length;
+                        directions[i] = 1;   
                     }
                     textGenerated = 1;
                 }
 
-                let verseIndex = 0;
                 let outString = '';
                 let itemsShowed = 0;
-                let currentDistance = randomDistances[0];
+                let currentPosition = 0;
 
-                while (verseIndex < selectedVerse.length){
+                for (var i = 0; i < selectedVerse.length; i++){
                     //reached the item-insertion position
-                    if(currentDistance == 0){
+                    if(currentPosition == absolutePositions[itemsShowed]){
                         //if not all items have been displayed yet
                         if (itemsShowed != items.length){
                         outString += '<span style="color:white;">' + items[itemsShowed] + '</span>';
+                        currentPosition += items[itemsShowed].length;
                         itemsShowed++;
-                        if(itemsShowed < items.length){currentDistance = randomDistances[itemsShowed];}
                         continue;
                         }
                     }
-                    outString += selectedVerse[verseIndex];
-                    verseIndex++;
-                    currentDistance--;
+                    outString += selectedVerse[i];
+                    currentPosition++;
                 }
-                //move all words to the right, for next run
-                randomDistances[0]++;
-                        if(randomDistances[0] >= maxDist){
-                            randomDistances[0] = getRandomInt(maxDist);
-                            while (randomDistances[0] < maxDist/2){ randomDistances[0] = getRandomInt(maxDist);}
-                        }
+ 
+                //move all words in the correct direction
+                for (var i = 0; i < items.length; i++){
+                    if(directions[i] == 1) absolutePositions[i] += 1;
+                    else if(directions[i] == 0) absolutePositions[i] -= 1;
+
+                    //gotta fix this:
+                    if(absolutePositions[i] >= endingPositions[i]) {absolutePositions[i] = endingPositions[i]; directions[i] = 0;}
+                    else if(absolutePositions[i] <= startingPositions[i]) {absolutePositions[i] = startingPositions[i]; directions[i] = 1;}
+                }
+                
+                //alert("Starting: " + JSON.stringify(startingPositions) + " Ending: " + JSON.stringify(endingPositions) + "Current: " + JSON.stringify(absolutePositions));
+                        
+                
+                
                 //alert(outString);
                 ourText.innerHTML = outString;
             
